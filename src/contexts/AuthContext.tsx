@@ -48,7 +48,6 @@ export function AuthProvider({ children }: AuthProviderProps){
     }catch(error){
       if (axios.isAxiosError(error) && error.response){
           alert(`Erro ao autenticar o usuário: ${error.response.status}`);
-          console.log('Resposta da API: ', error.message);
         } else{
           alert("Erro ao autenticar o usuário! Verifique a conexão com a API!");
         }

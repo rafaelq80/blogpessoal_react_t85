@@ -71,7 +71,6 @@ function Cadastro() {
     }catch(error){
         if (axios.isAxiosError(error) && error.response){
           alert(`Erro ao cadastrar o usuário: ${error.response.status}`);
-          console.log('Resposta da API: ', error.message);
         } else{
           alert("Erro ao cadastrar o usuário! Verifique a conexão com a API!");
         }
