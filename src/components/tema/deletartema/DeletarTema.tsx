@@ -26,28 +26,19 @@ function DeletarTema() {
 	const { id } = useParams<{ id: string }>();
 
 	// Função responsável por buscar um tema pelo ID no Backend (API)
-	async function buscarTemaPorId(){
-
-		setIsLoading(true);
-
-		try{
-
-				await buscar(`/temas/${id}`, setTema, {
-					headers: { Authorization: token }
-				})
-
-		}catch (error){
-			if (axios.isAxiosError(error)){
-          alert(`Erro ao cadastrar o tema: ${error.response?.status}`);
-					if(error.response?.status === 401){
-						handleLogout();
-					}
-        }
-				return;
-		}finally {
-			setIsLoading(false);
+	async function buscarTemaPorId() {
+		try {
+			await buscar(`/temas/${id}`, setTema, {
+				headers: { Authorization: token },
+			})
+		} catch (error) {
+			if (axios.isAxiosError(error)) {
+				alert(`Erro ao buscar o tema (${error.response?.status})`)
+				if (error.response?.status === 401) {
+					handleLogout()
+				}
+			}
 		}
-
 	}
 	
 	// useEffect para monitorar o id (parâmetro da rota)
@@ -81,7 +72,7 @@ function DeletarTema() {
 
 		}catch (error){
 			if (axios.isAxiosError(error)){
-          alert(`Erro ao cadastrar o tema: ${error.response?.status}`);
+          alert(`Erro ao deletar o tema (${error.response?.status})`);
 					if(error.response?.status === 401){
 						handleLogout();
 					}

@@ -69,11 +69,10 @@ function Cadastro() {
         await cadastrarUsuario(`/usuarios/cadastrar`, usuario, setUsuario);
         alert("Usuário cadastrado com sucesso!");
     }catch(error){
-        if (axios.isAxiosError(error) && error.response){
-          alert(`Erro ao cadastrar o usuário: ${error.response.status}`);
-        } else{
-          alert("Erro ao cadastrar o usuário! Verifique a conexão com a API!");
-        }
+       if (axios.isAxiosError(error)) {
+				alert(`Erro ao cadastrar o usuário (${error.response?.status})`)
+        return;
+			}
     } finally{
       setIsLoading(false);
     }
